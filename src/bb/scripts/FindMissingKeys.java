@@ -30,7 +30,7 @@ public class FindMissingKeys {
 		String fileFr = "Messages_fr.properties";
 		
 		String filesLocationOutput = "./src/bb/filesoutput/";
-		String fileOutputOne = "Missing_keys.properties";
+		String fileOutput = "Missing_keys.properties";
 		
 		// Wanted files (lang)
 		File englishFileLocation = new File(filesLocation + fileEn);
@@ -41,8 +41,8 @@ public class FindMissingKeys {
 		Properties propEn = new Properties();    
 		Properties propFr = new Properties();
 		
-		
 		Properties propOutputMissingKeys = new Properties();
+		
 		/**
 		 * Loading files
 		 */
@@ -72,7 +72,7 @@ public class FindMissingKeys {
 	  /**
 	   * Writte each key inside new file
 	   */
-	  try(OutputStream outputStream = new FileOutputStream(filesLocationOutput + fileOutputOne)) {
+	  try(OutputStream outputStream = new FileOutputStream(filesLocationOutput + fileOutput)) {
 		  for (String key : finalSet) {
 			  propOutputMissingKeys.setProperty(key, propEn.getProperty(key));
 		  }

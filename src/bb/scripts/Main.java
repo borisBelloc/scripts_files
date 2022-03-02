@@ -3,8 +3,11 @@ package bb.scripts;
 public class Main {
 	  public static void main(String[] args) {
 
-		      FindMissingKeys sc = new FindMissingKeys();
-		      sc.findMissingKeysAndWriteToNewFile();
+//		      FindMissingKeys sc = new FindMissingKeys();
+//		      sc.findMissingKeysAndWriteToNewFile();
+		  
+		      FindDuplicateLines fdl = new FindDuplicateLines();
+		      fdl.findDuplicateLineAndRemoveFromNewFile();
 		      
 		    }
 
