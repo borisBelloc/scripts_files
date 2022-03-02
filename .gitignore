@@ -1,4 +1,7 @@
 Missing_keys.properties
+File_without_duplicate_keys.properties
+File_without_combox_keys.properties
+File_combox_keys.properties
 
 # -- VSCode
 

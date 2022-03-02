@@ -1,15 +1,26 @@
 package bb.scripts;
 
+import java.io.IOException;
+
 public class Main {
 	  public static void main(String[] args) {
-
+		  
 //		      FindMissingKeys sc = new FindMissingKeys();
 //		      sc.findMissingKeysAndWriteToNewFile();
 		  
-		      FindDuplicateLines fdl = new FindDuplicateLines();
-		      fdl.findDuplicateLineAndRemoveFromNewFile();
-		      
-		    }
+//		      FindDuplicateLines fdl = new FindDuplicateLines();
+//		      fdl.findDuplicateLineAndRemoveFromNewFile();
+
+		  FindKeyWithString fcbs = new FindKeyWithString();
+		  try {
+				fcbs.findKeyByString();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			  
+			  
+			      
+	    }
 
 }
 
