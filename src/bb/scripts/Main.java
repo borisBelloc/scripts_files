@@ -16,6 +16,6 @@ public class Main {
 
 //-----------
 //[x] Prendre toutes les clées du fichier FR non présente dans fichier EN et les ajouter dans un nouveau fichier
-//[ ] Comparer Fichier FR et EN et virer les lignes identiques (non traduite)
+//[x] Comparer Fichier FR et EN et virer les lignes identiques (non traduite)
 //[ ] Extraire les clés BE "combox" pour faire un autre fichier (pas à traduire)
 //-----------

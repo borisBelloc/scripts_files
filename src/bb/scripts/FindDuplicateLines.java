@@ -13,7 +13,12 @@ import java.util.Set;
 public class FindDuplicateLines {
 	
 	/**
+	 * Take 2 properties files
+     * Keys present in both folder will have their value set to empty strinng inside output file
 	 * fileEn is the intial file for the output file
+	   * * Input file : Messages_en.properties
+	   * * Input file : Messages_fr.properties
+	   * * Output file : File_without_duplicate_keys.properties
 	 */
 	public void findDuplicateLineAndRemoveFromNewFile() {
 		System.out.println("----- Start script -----");
@@ -30,10 +35,9 @@ public class FindDuplicateLines {
 		File englishFileLocation = new File(filesLocation + fileEn);
 		File frenchFileLocation = new File(filesLocation+ fileFr);
 		
-		InputStream streamEn, streamFr, streamOutput;
+		InputStream streamEn, streamFr;
 		Properties propEn = new Properties();    
 		Properties propFr = new Properties();
-		Properties propOutputMissingKeys = new Properties();
 		
 		/**
 		 * Loading files
@@ -43,9 +47,6 @@ public class FindDuplicateLines {
 			streamFr = new FileInputStream(frenchFileLocation);
 			propEn.load(streamEn);
 			propFr.load(streamFr);
-			// Ini propOutputMissingKeys with properties from FileEn
-			streamOutput = new FileInputStream(englishFileLocation);
-			propOutputMissingKeys.load(streamOutput);
 			
 			streamEn.close();
 			streamFr.close();
@@ -59,35 +60,19 @@ public class FindDuplicateLines {
 			e.printStackTrace();
 			System.out.println("ERROR * Failed to load file");
 		}
-		
-
-		//[ ] Comparer Fichier FR et EN
-		// dans fichier EN, enlever value des ligne identique au fichier fr
-		
-		
+		// Convert prop file to Set<string> to browse keys
 		Set<String> setEn = propEn.stringPropertyNames();
-//		Set<String> setFr = propFr.stringPropertyNames();
-//		Set<String> finalProp = setEn;
-		
-		System.out.println("-------");
-		System.out.println(propEn);
-		System.out.println(propFr);
-		System.out.println(propOutputMissingKeys);
 		
 		  /**
 		   * Writte each key inside new file
 		   */
 		  try(OutputStream outputStream = new FileOutputStream(filesLocationOutput + fileOutput)) {
-			  
-//			  propOutputMissingKeys.store(outputStream, null);
-
-			  
 			  for (String key : setEn) {
 				  if (propEn.getProperty(key).equals(propFr.getProperty(key))) {
-					  propOutputMissingKeys.setProperty(key, "");
+					  propEn.setProperty(key, "");
 				  }
 			  }
-			  propOutputMissingKeys.store(outputStream, null);
+			  propEn.store(outputStream, null);
 			  outputStream.close();
 			  System.out.println("+ Successfully written inside file");
 		  } catch (IOException e) {
@@ -95,38 +80,7 @@ public class FindDuplicateLines {
 				System.out.println("ERROR * Failed to write file inside File : propOutputMissingKeys");
 		  }
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		System.out.println("----- Successfully ended script -----");
-
 	}
 
 
