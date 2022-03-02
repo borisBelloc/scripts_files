@@ -3,7 +3,7 @@ package bb.scripts;
 import java.io.IOException;
 
 public class Main {
-	  public static void main(String[] args) {
+	  public static void main(String[] args) throws IOException {
 		  
 //		      FindMissingKeys sc = new FindMissingKeys();
 //		      sc.findMissingKeysAndWriteToNewFile();
@@ -12,14 +12,8 @@ public class Main {
 //		      fdl.findDuplicateLineAndRemoveFromNewFile();
 
 		  FindKeyWithString fcbs = new FindKeyWithString();
-		  try {
-				fcbs.findKeyByString();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		  fcbs.findKeyByString();
 			  
-			  
-			      
 	    }
 
 }

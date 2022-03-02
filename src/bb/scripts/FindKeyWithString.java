@@ -13,9 +13,10 @@ public class FindKeyWithString {
 	
 	/**
 	 * Take 1 properties file
-     * Keys with "combox" are removed and written in new file
-	 * @throws IOException 
-
+     * Keys with "combox" are removed from and written in new file
+     * * Input file : Messages_en.properties
+     * * Output file : File_without_combox_keys.properties
+     * * Output file : File_combox_keys.properties
 	 */
 	public void findKeyByString() throws IOException {
 		System.out.println("----- Start script -----");
@@ -53,40 +54,26 @@ public class FindKeyWithString {
 			System.out.println("ERROR * Failed to load file");
 		}
 		
-		  /**
-		   * Writte each key inside new file
-		   */
+
 		OutputStream outputStreamCombox = new FileOutputStream(filesLocationOutput + fileOutputCombox);
 		OutputStream outputStream = new FileOutputStream(filesLocationOutput + fileOutput);
-		  
-	   for (Object key: propEn.keySet()) {
-            System.out.println(key + ": " + propEn.getProperty(key.toString()));
+		
+		for (Object key: propEn.keySet()) {
+			System.out.println(key + ": " + propEn.getProperty(key.toString()));
 //			Check if String Contains a Substring
-            if (key.toString().contains("combox")) {
-            	System.out.println("+++++++++++");
-            	System.out.println(key.toString());
-            	System.out.println(propEn.getProperty(key.toString()));
-            	System.out.println("+++++++++++");
-            	propOutputCombox.setProperty(key.toString(), propEn.getProperty(key.toString()));
-            } else {
-            	System.out.println("----------");
-            	System.out.println(key.toString());
-            	System.out.println(propEn.getProperty(key.toString()));
-            	System.out.println("----------");
-            	propOutput.setProperty(key.toString(), propEn.getProperty(key.toString()));
-            }
-        }
-		   propOutputCombox.store(outputStreamCombox, null);
-		   propOutput.store(outputStream, null);
-		   outputStreamCombox.close();
-		   outputStream.close();
-		   System.out.println("+ Successfully written inside file");
-		
-		
-		
-		   System.out.println("----- Successfully ended script -----");
+			if (key.toString().contains("combox")) {
+				propOutputCombox.setProperty(key.toString(), propEn.getProperty(key.toString()));
+			} else {
+				propOutput.setProperty(key.toString(), propEn.getProperty(key.toString()));
+			}
+		}
+	   propOutputCombox.store(outputStreamCombox, null);
+	   propOutput.store(outputStream, null);
+	   outputStreamCombox.close();
+	   outputStream.close();
+	   System.out.println("+ Successfully written inside file");
 
-		
+	   System.out.println("----- Successfully ended script -----");
 	}
 
 }
