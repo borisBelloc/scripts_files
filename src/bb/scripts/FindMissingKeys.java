@@ -13,10 +13,10 @@ import java.util.logging.Logger;
 
 public class FindMissingKeys {
 
-
   /**
    * Take 2 properties files
-   * Keys present in fileEn and not in fileFr will be wrote inside a new file
+   * Keys present in fileFR and not in fileEN will be wrote inside a new file
+   * 
    * * Input file : Messages_en.properties
    * * Input file : Messages_fr.properties
    * * Output file : Missing_keys.properties
@@ -64,17 +64,18 @@ public class FindMissingKeys {
 		
 		Set<String> setEn = propEn.stringPropertyNames();
 		Set<String> setFr = propFr.stringPropertyNames();
-		Set<String> finalSet = setEn;
+		Set<String> finalSet = setFr;
 
 		// Remove the keys present in both files
-		finalSet.removeAll(setFr);
+		finalSet.removeAll(setEn);
+		System.out.println("remaining keys : " + finalSet );
 		
 	  /**
-	   * Writte each key inside new file
+	   * Write each key inside new file
 	   */
 	  try(OutputStream outputStream = new FileOutputStream(filesLocationOutput + fileOutput)) {
 		  for (String key : finalSet) {
-			  propOutputMissingKeys.setProperty(key, propEn.getProperty(key));
+			  propOutputMissingKeys.setProperty(key, propFr.getProperty(key));
 		  }
 		  propOutputMissingKeys.store(outputStream, null);
 		  outputStream.close();
